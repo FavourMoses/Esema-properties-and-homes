@@ -1,0 +1,2 @@
+ALTER TABLE "trust_features" ADD CONSTRAINT "trust_features_title_unique" UNIQUE("title");--> statement-breakpoint
+ALTER TABLE "verification_steps" ADD CONSTRAINT "verification_steps_step_number_unique" UNIQUE("step_number");

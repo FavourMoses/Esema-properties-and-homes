@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  /* ── Brand palette ────────────────────────────────────────────────── */
+  --color-ink: #1c1f1d;         /* primary text */
+  --color-ink-soft: #4b5049;    /* secondary text */
+  --color-paper: #faf8f3;       /* page background */
+  --color-paper-tint: #f1efe6;  /* recessed section background */
+  --color-sage: #eef3e7;        /* soft green tint for cards/badges */
+  --color-forest: #4f7a26;      /* primary green — CTAs, links */
+  --color-forest-deep: #3c5c1c; /* hover state for green */
+  --color-navy: #142e54;        /* headings, admin chrome, trust */
+  --color-navy-deep: #0d1f3b;
+  --color-gold: #b9832c;        /* verification / trust accent, used sparingly */
+  --color-border: #e3ded0;      /* hairline borders on cream */
+  --color-danger: #b3432f;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-paper: var(--color-paper);
+  --color-paper-tint: var(--color-paper-tint);
+  --color-sage: var(--color-sage);
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
+  --color-gold: var(--color-gold);
+  --color-border: var(--color-border);
+  --color-danger: var(--color-danger);
+
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Visible keyboard focus everywhere — accessibility floor, not optional. */
+:focus-visible {
+  outline: 2px solid var(--color-forest);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Signature diagonal cut, echoing the brand's original hero shape.
+   Used at section boundaries to keep one consistent visual device. */
+.diagonal-edge-b {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
