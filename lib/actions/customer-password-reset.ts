@@ -7,23 +7,46 @@ import { db, schema } from "@/lib/db";
 import { forgotPasswordSchema, resetPasswordSchema } from "@/lib/validations";
 import { generateResetToken, hashResetToken, RESET_TOKEN_TTL_MS } from "@/lib/reset-token";
 import { sendPasswordResetEmail } from "@/lib/email";
+import { checkRateLimit } from "@/lib/rate-limit";
 
-export type ForgotPasswordState = { message: string | null; error: string | null };
+export type ForgotPasswordState = {
+  message: string | null;
+  error: string | null;
+};
 export type ResetPasswordState = { error: string | null };
 
-const GENERIC_MESSAGE = "If that email is registered, we've sent a link to reset your password.";
+const GENERIC_MESSAGE =
+  "If that email is registered, we've sent a link to reset your password.";
 
 export async function requestCustomerPasswordReset(
   _prevState: ForgotPasswordState,
-  formData: FormData
+  formData: FormData,
 ): Promise<ForgotPasswordState> {
-  const parsed = forgotPasswordSchema.safeParse({ email: formData.get("email") });
+  const allowed = await checkRateLimit(
+    "customer-forgot-password",
+    3,
+    15 * 60_000,
+  ); // 3 per 15 min
+  if (!allowed) {
+    return {
+      message: null,
+      error: "Too many requests — please try again later.",
+    };
+  }
+
+  const parsed = forgotPasswordSchema.safeParse({
+    email: formData.get("email"),
+  });
   if (!parsed.success) {
     return { message: null, error: "Please enter a valid email address." };
   }
   const email = parsed.data.email.toLowerCase().trim();
 
-  const [user] = await db.select().from(schema.customerUsers).where(eq(schema.customerUsers.email, email)).limit(1);
+  const [user] = await db
+    .select()
+    .from(schema.customerUsers)
+    .where(eq(schema.customerUsers.email, email))
+    .limit(1);
 
   if (user && user.isActive) {
     const { raw, hash } = generateResetToken();
@@ -37,7 +60,12 @@ export async function requestCustomerPasswordReset(
     const resetUrl = `${baseUrl}/portal/reset-password?token=${raw}`;
 
     try {
-      await sendPasswordResetEmail({ to: user.email, name: user.name, resetUrl, audience: "customer" });
+      await sendPasswordResetEmail({
+        to: user.email,
+        name: user.name,
+        resetUrl,
+        audience: "customer",
+      });
     } catch {
       // Same generic response either way — don't leak delivery failures.
     }

@@ -10,11 +10,11 @@ import { InstallAppButton } from "@/components/site/install-app-button";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
+  { href: "/about", label: "About" },
   { href: "/properties", label: "Properties" },
   { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar({
@@ -31,9 +31,13 @@ export function Navbar({
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-paper)]/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
         <Link href="/" aria-label="Go to homepage">
-          <Logo siteName={siteName} logoUrl={logoUrl} iconClassName="h-14 w-14" />
+          <Logo
+            siteName={siteName}
+            logoUrl={logoUrl}
+            iconClassName="h-19 w-19"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -55,7 +59,7 @@ export function Navbar({
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           <InstallAppButton />
           <LinkButton href="/contact" variant="primary">
             <Phone className="h-4 w-4" /> Book a Consultation
@@ -77,13 +81,22 @@ export function Navbar({
           <ul className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} onClick={() => setOpen(false)} className="text-base font-medium">
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="text-base font-medium"
+                >
                   {link.label}
                 </Link>
               </li>
             ))}
             <li>
-              <LinkButton href="/contact" variant="primary" className="w-full" onClick={() => setOpen(false)}>
+              <LinkButton
+                href="/contact"
+                variant="primary"
+                className="w-full"
+                onClick={() => setOpen(false)}
+              >
                 Book a Consultation
               </LinkButton>
             </li>
@@ -91,7 +104,9 @@ export function Navbar({
               <InstallAppButton />
             </li>
             {phone ? (
-              <li className="pt-2 text-sm text-[var(--color-ink-soft)]">Call us: {phone}</li>
+              <li className="pt-2 text-sm text-[var(--color-ink-soft)]">
+                Call us: {phone}
+              </li>
             ) : null}
           </ul>
         </nav>

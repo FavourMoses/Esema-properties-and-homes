@@ -2,6 +2,7 @@
 
 import { db, schema } from "@/lib/db";
 import { leadSchema } from "@/lib/validations";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export type LeadFormState = {
   ok: boolean;
@@ -10,8 +11,16 @@ export type LeadFormState = {
 
 export async function submitLead(
   _prevState: LeadFormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<LeadFormState> {
+  const allowed = await checkRateLimit("submit-lead", 5, 10 * 60_000); // 5 per 10 min
+  if (!allowed) {
+    return {
+      ok: false,
+      message: "Too many submissions — please try again in a few minutes.",
+    };
+  }
+
   const raw = {
     name: formData.get("name")?.toString() ?? "",
     email: formData.get("email")?.toString() ?? "",
@@ -25,7 +34,9 @@ export async function submitLead(
   if (!parsed.success) {
     return {
       ok: false,
-      message: parsed.error.issues[0]?.message ?? "Please check the form and try again.",
+      message:
+        parsed.error.issues[0]?.message ??
+        "Please check the form and try again.",
     };
   }
 
@@ -39,8 +50,14 @@ export async function submitLead(
       propertyId: parsed.data.propertyId || null,
     });
   } catch {
-    return { ok: false, message: "Something went wrong on our end. Please try again shortly." };
+    return {
+      ok: false,
+      message: "Something went wrong on our end. Please try again shortly.",
+    };
   }
 
-  return { ok: true, message: "Thanks — we've received your message and will be in touch soon." };
+  return {
+    ok: true,
+    message: "Thanks — we've received your message and will be in touch soon.",
+  };
 }

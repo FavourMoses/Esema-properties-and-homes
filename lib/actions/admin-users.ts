@@ -127,11 +127,24 @@ export async function deleteAdminUser(id: string) {
     throw new Error("You can't delete your own account.");
   }
 
-  const [target] = await db.select({ role: schema.adminUsers.role }).from(schema.adminUsers).where(eq(schema.adminUsers.id, id)).limit(1);
+  const [target] = await db
+    .select({ role: schema.adminUsers.role })
+    .from(schema.adminUsers)
+    .where(eq(schema.adminUsers.id, id))
+    .limit(1);
   if (target?.role === "owner") {
     throw new Error("Owner accounts can't be deleted from the dashboard.");
   }
 
   await db.delete(schema.adminUsers).where(eq(schema.adminUsers.id, id));
+  revalidatePath("/admin/admin-users");
+}
+
+export async function unlockAdminUser(id: string) {
+  await requireOwner();
+  await db
+    .update(schema.adminUsers)
+    .set({ failedLoginAttempts: 0, lockedUntil: null })
+    .where(eq(schema.adminUsers.id, id));
   revalidatePath("/admin/admin-users");
 }

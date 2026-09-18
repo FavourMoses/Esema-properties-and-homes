@@ -86,8 +86,10 @@ export const adminUsers = pgTable("admin_users", {
   // the account is locked until this timestamp passes.
   failedLoginAttempts: integer("failed_login_attempts").notNull().default(0),
   lockedUntil: timestamp("locked_until", { withTimezone: true }),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -105,8 +107,10 @@ export const adminPasswordResets = pgTable("admin_password_resets", {
   tokenHash: text("token_hash").notNull().unique(),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   usedAt: timestamp("used_at", { withTimezone: true }),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -118,21 +122,37 @@ export const adminPasswordResets = pgTable("admin_password_resets", {
 export const siteSettings = pgTable("site_settings", {
   id: integer("id").primaryKey().default(1),
 
-  siteName: varchar("site_name", { length: 120 }).notNull().default("Esema Properties & Homes"),
-  tagline: varchar("tagline", { length: 200 }).notNull().default("Building Dreams. Creating Value."),
+  siteName: varchar("site_name", { length: 120 })
+    .notNull()
+    .default("Esema Properties & Homes"),
+  tagline: varchar("tagline", { length: 200 })
+    .notNull()
+    .default("Building Dreams. Creating Value."),
   logoUrl: text("logo_url"),
 
   heroTitle: text("hero_title").notNull().default("Esema Properties & Homes"),
-  heroSubtitle: text("hero_subtitle").notNull().default(
-    "We deliver quality, affordable, and verified properties across Nigeria — and stand beside you at every step, from land verification to handover."
-  ),
+  heroSubtitle: text("hero_subtitle")
+    .notNull()
+    .default(
+      "We deliver quality, affordable, and verified properties across Nigeria — and stand beside you at every step, from land verification to handover.",
+    ),
   heroImageUrl: text("hero_image_url"),
-  heroCtaPrimaryLabel: varchar("hero_cta_primary_label", { length: 60 }).default("Explore Properties"),
-  heroCtaPrimaryHref: varchar("hero_cta_primary_href", { length: 200 }).default("/properties"),
-  heroCtaSecondaryLabel: varchar("hero_cta_secondary_label", { length: 60 }).default("How Verification Works"),
-  heroCtaSecondaryHref: varchar("hero_cta_secondary_href", { length: 200 }).default("/services"),
+  heroCtaPrimaryLabel: varchar("hero_cta_primary_label", {
+    length: 60,
+  }).default("Explore Properties"),
+  heroCtaPrimaryHref: varchar("hero_cta_primary_href", { length: 200 }).default(
+    "/properties",
+  ),
+  heroCtaSecondaryLabel: varchar("hero_cta_secondary_label", {
+    length: 60,
+  }).default("How Verification Works"),
+  heroCtaSecondaryHref: varchar("hero_cta_secondary_href", {
+    length: 200,
+  }).default("/services"),
 
-  aboutHeading: varchar("about_heading", { length: 200 }).default("About Esema Properties & Homes"),
+  aboutHeading: varchar("about_heading", { length: 200 }).default(
+    "About Esema Properties & Homes",
+  ),
   aboutBody: text("about_body"),
   aboutImageUrl: text("about_image_url"),
 
@@ -146,10 +166,14 @@ export const siteSettings = pgTable("site_settings", {
   twitterUrl: text("twitter_url"),
   linkedinUrl: text("linkedin_url"),
 
-  footerNote: text("footer_note").default("© Esema Properties & Homes. All rights reserved."),
+  footerNote: text("footer_note").default(
+    "© Esema Properties & Homes. All rights reserved.",
+  ),
 
-  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -166,7 +190,7 @@ export const bankAccounts = pgTable("bank_accounts", {
   note: varchar("note", { length: 200 }),
   isActive: boolean("is_active").notNull().default(true),
   sortOrder: integer("sort_order").notNull().default(0),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -181,7 +205,7 @@ export const trustFeatures = pgTable("trust_features", {
   description: text("description").notNull(),
   sortOrder: integer("sort_order").notNull().default(0),
   isActive: boolean("is_active").notNull().default(true),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -199,7 +223,7 @@ export const services = pgTable("services", {
   imageUrl: text("image_url"),
   sortOrder: integer("sort_order").notNull().default(0),
   isActive: boolean("is_active").notNull().default(true),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -212,7 +236,7 @@ export const verificationSteps = pgTable("verification_steps", {
   title: varchar("title", { length: 160 }).notNull(),
   description: text("description").notNull(),
   isActive: boolean("is_active").notNull().default(true),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -226,9 +250,13 @@ export const properties = pgTable("properties", {
   description: text("description").notNull(),
 
   propertyType: propertyTypeEnum("property_type").notNull().default("house"),
-  listingSource: listingSourceEnum("listing_source").notNull().default("esema_owned"),
+  listingSource: listingSourceEnum("listing_source")
+    .notNull()
+    .default("esema_owned"),
   status: propertyStatusEnum("status").notNull().default("available"),
-  verificationStatus: verificationStatusEnum("verification_status").notNull().default("verified"),
+  verificationStatus: verificationStatusEnum("verification_status")
+    .notNull()
+    .default("verified"),
 
   price: numeric("price", { precision: 14, scale: 2 }).notNull(),
   currency: varchar("currency", { length: 10 }).notNull().default("NGN"),
@@ -251,9 +279,13 @@ export const properties = pgTable("properties", {
   ownerContactPhone: varchar("owner_contact_phone", { length: 40 }),
   internalNotes: text("internal_notes"),
 
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 export const propertyImages = pgTable("property_images", {
   id: serial("id").primaryKey(),
@@ -262,7 +294,7 @@ export const propertyImages = pgTable("property_images", {
     .references(() => properties.id, { onDelete: "cascade" }),
   url: text("url").notNull(),
   sortOrder: integer("sort_order").notNull().default(0),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -281,8 +313,10 @@ export const customerUsers = pgTable("customer_users", {
   failedLoginAttempts: integer("failed_login_attempts").notNull().default(0),
   lockedUntil: timestamp("locked_until", { withTimezone: true }),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 export const customerPasswordResets = pgTable("customer_password_resets", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -292,8 +326,10 @@ export const customerPasswordResets = pgTable("customer_password_resets", {
   tokenHash: text("token_hash").notNull().unique(),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   usedAt: timestamp("used_at", { withTimezone: true }),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 /**
  * Which customer(s) can see which propert(ies). A property can have more
@@ -308,7 +344,7 @@ export const propertyCustomers = pgTable("property_customers", {
   customerUserId: uuid("customer_user_id")
     .notNull()
     .references(() => customerUsers.id, { onDelete: "cascade" }),
-});
+}).enableRLS();
 
 /**
  * The progress feed a customer sees for their property — land verification
@@ -323,9 +359,13 @@ export const propertyUpdates = pgTable("property_updates", {
   title: varchar("title", { length: 220 }).notNull(),
   message: text("message").notNull(),
   images: jsonb("images").$type<string[]>().notNull().default([]),
-  isVisibleToCustomer: boolean("is_visible_to_customer").notNull().default(true),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  isVisibleToCustomer: boolean("is_visible_to_customer")
+    .notNull()
+    .default(true),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -343,8 +383,10 @@ export const projects = pgTable("projects", {
   coverImageUrl: text("cover_image_url"),
   expectedCompletion: varchar("expected_completion", { length: 60 }),
   isFeatured: boolean("is_featured").notNull().default(false),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();
 
 export const projectImages = pgTable("project_images", {
   id: serial("id").primaryKey(),
@@ -353,7 +395,7 @@ export const projectImages = pgTable("project_images", {
     .references(() => projects.id, { onDelete: "cascade" }),
   url: text("url").notNull(),
   sortOrder: integer("sort_order").notNull().default(0),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -369,7 +411,7 @@ export const testimonials = pgTable("testimonials", {
   avatarUrl: text("avatar_url"),
   isActive: boolean("is_active").notNull().default(true),
   sortOrder: integer("sort_order").notNull().default(0),
-});
+}).enableRLS();
 
 export const teamMembers = pgTable("team_members", {
   id: serial("id").primaryKey(),
@@ -379,7 +421,7 @@ export const teamMembers = pgTable("team_members", {
   photoUrl: text("photo_url"),
   sortOrder: integer("sort_order").notNull().default(0),
   isActive: boolean("is_active").notNull().default(true),
-});
+}).enableRLS();
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -393,7 +435,11 @@ export const leads = pgTable("leads", {
   phone: varchar("phone", { length: 40 }),
   message: text("message").notNull(),
   type: leadTypeEnum("type").notNull().default("general"),
-  propertyId: uuid("property_id").references(() => properties.id, { onDelete: "set null" }),
+  propertyId: uuid("property_id").references(() => properties.id, {
+    onDelete: "set null",
+  }),
   status: leadStatusEnum("status").notNull().default("new"),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-});
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}).enableRLS();

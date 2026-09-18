@@ -22,7 +22,7 @@ export async function updateSiteSettings(
   const d = parsed.data;
 
   const values = {
-    siteName: d.siteName,
+    siteName: d.siteName || "",
     tagline: d.tagline,
     logoUrl: d.logoUrl || null,
     heroTitle: d.heroTitle || "",

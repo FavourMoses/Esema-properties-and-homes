@@ -133,6 +133,15 @@ export async function deleteCustomer(id: string) {
   revalidatePath("/admin/customers");
 }
 
+export async function unlockCustomer(id: string) {
+  await requireAdmin("customers");
+  await db
+    .update(schema.customerUsers)
+    .set({ failedLoginAttempts: 0, lockedUntil: null })
+    .where(eq(schema.customerUsers.id, id));
+  revalidatePath("/admin/customers");
+}
+
 export async function getLinkedPropertyIds(customerUserId: string): Promise<string[]> {
   const rows = await db
     .select({ propertyId: schema.propertyCustomers.propertyId })

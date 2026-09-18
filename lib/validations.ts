@@ -84,7 +84,7 @@ export const serviceSchema = z.object({
 });
 
 export const siteSettingsSchema = z.object({
-  siteName: z.string().trim().min(2).max(120),
+  siteName: z.string().trim().max(120).optional().or(z.literal("")),
   tagline: z.string().trim().min(2).max(200),
   logoUrl: imagePathSchema,
   heroTitle: z.string().trim().max(300).optional().or(z.literal("")),

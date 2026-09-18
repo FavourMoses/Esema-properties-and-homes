@@ -9,7 +9,8 @@ type BeforeInstallPromptEvent = Event & {
 };
 
 export function InstallAppButton({ className = "" }: { className?: string }) {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [isStandalone, setIsStandalone] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
@@ -21,7 +22,10 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsStandalone(window.matchMedia("(display-mode: standalone)").matches);
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsIOS(/iphone|ipad|ipod/i.test(window.navigator.userAgent) && !("MSStream" in window));
+    setIsIOS(
+      /iphone|ipad|ipod/i.test(window.navigator.userAgent) &&
+        !("MSStream" in window),
+    );
 
     const handler = (e: Event) => {
       e.preventDefault();
@@ -49,7 +53,7 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
       <button
         type="button"
         onClick={handleClick}
-        className={`flex items-center gap-1.5 text-sm font-medium text-[var(--color-navy)] hover:text-[var(--color-forest)] ${className}`}
+        className={`flex items-center gap-0.2 text-sm font-medium text-[var(--color-navy)] hover:text-[var(--color-forest)] ${className}`}
       >
         <Download className="h-4 w-4" /> Download App
       </button>
@@ -69,7 +73,10 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
               <h2 className="font-display text-base font-semibold text-[var(--color-navy)]">
                 Install this app
               </h2>
-              <button onClick={() => setShowInstructions(false)} aria-label="Close">
+              <button
+                onClick={() => setShowInstructions(false)}
+                aria-label="Close"
+              >
                 <X className="h-5 w-5 text-[var(--color-ink-soft)]" />
               </button>
             </div>
@@ -78,13 +85,22 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
               <p className="mt-3 flex items-start gap-2 text-sm text-[var(--color-ink-soft)]">
                 <Share className="mt-0.5 h-4 w-4 shrink-0" />
                 Tap the Share button in Safari, then choose{" "}
-                <strong className="text-[var(--color-navy)]">&ldquo;Add to Home Screen&rdquo;</strong>.
+                <strong className="text-[var(--color-navy)]">
+                  &ldquo;Add to Home Screen&rdquo;
+                </strong>
+                .
               </p>
             ) : (
               <p className="mt-3 text-sm text-[var(--color-ink-soft)]">
                 Open your browser&apos;s menu (usually ⋮ or ···) and look for{" "}
-                <strong className="text-[var(--color-navy)]">&ldquo;Install app&rdquo;</strong> or{" "}
-                <strong className="text-[var(--color-navy)]">&ldquo;Add to Home Screen&rdquo;</strong>.
+                <strong className="text-[var(--color-navy)]">
+                  &ldquo;Install app&rdquo;
+                </strong>{" "}
+                or{" "}
+                <strong className="text-[var(--color-navy)]">
+                  &ldquo;Add to Home Screen&rdquo;
+                </strong>
+                .
               </p>
             )}
           </div>

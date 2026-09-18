@@ -36,6 +36,13 @@
       "when": 1789082594062,
       "tag": "0004_complex_joystick",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789682420232,
+      "tag": "0005_overconfident_dreadnoughts",
+      "breakpoints": true
     }
   ]
 }
