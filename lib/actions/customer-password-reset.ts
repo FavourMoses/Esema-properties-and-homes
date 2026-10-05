@@ -30,7 +30,7 @@ export async function requestCustomerPasswordReset(
   if (!allowed) {
     return {
       message: null,
-      error: "Too many requests — please try again later.",
+      error: "Too many requests please try again later.",
     };
   }
 
@@ -67,7 +67,7 @@ export async function requestCustomerPasswordReset(
         audience: "customer",
       });
     } catch {
-      // Same generic response either way — don't leak delivery failures.
+      // Same generic response either way, don't leak delivery failures.
     }
   }
 

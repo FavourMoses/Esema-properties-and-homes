@@ -74,7 +74,7 @@ export function AdminUserForm({
       />
       {isSelf ? (
         <p className="text-xs text-[var(--color-ink-soft)]">
-          This is your own account — it can&apos;t be deactivated from here.
+          This is your own account, it can&apos;t be deactivated from here.
         </p>
       ) : null}
 

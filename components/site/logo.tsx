@@ -26,7 +26,7 @@ export function LogoMark({ className = "h-14 w-14" }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Green door/mark forming the "E" crossbar — the growth accent */}
+      {/* Green door/mark forming the "E" crossbar  the growth accent */}
       <rect
         x="19"
         y="27"

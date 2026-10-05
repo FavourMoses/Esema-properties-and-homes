@@ -738,7 +738,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "default": "'We deliver quality, affordable, and verified properties across Nigeria — and stand beside you at every step, from land verification to handover.'"
+          "default": "'We deliver quality, affordable, and verified properties across Nigeria and stand beside you at every step, from land verification to handover.'"
         },
         "hero_image_url": {
           "name": "hero_image_url",

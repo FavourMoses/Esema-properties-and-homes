@@ -14,7 +14,7 @@ export default async function ServicesPage() {
       <Container>
         <SectionHeading
           title="Our Services"
-          subtitle="Buying property from a distance — especially somewhere you've never visited — is where most people get burned. This is how we make sure it doesn't happen to you."
+          subtitle="Buying property from a distance especially somewhere you've never visited is where most people get burned. This is how we make sure it doesn't happen to you."
         />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">

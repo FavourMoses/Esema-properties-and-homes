@@ -10,7 +10,7 @@ export default async function AdminSettingsPage() {
     <div>
       <h1 className="font-display text-2xl font-bold text-[var(--color-navy)]">Site Settings</h1>
       <p className="mt-1 text-sm text-[var(--color-ink-soft)]">
-        Everything here controls the public website — change any of it and it goes live immediately.
+        Everything here controls the public website, change any of it and it goes live immediately.
       </p>
       <div className="mt-6">
         <SiteSettingsForm settings={settings} />

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Accepts a full URL (https://...) OR a local path under /public (starting
-// with "/") — the seed script and some default content use local paths,
+// with "/") the seed script and some default content use local paths,
 // so image fields need to accept both, not just externally-hosted URLs.
 export const imagePathSchema = z
   .string()
@@ -12,7 +12,7 @@ export const imagePathSchema = z
   .optional()
   .or(z.literal(""));
 
-// Same rule as imagePathSchema, but for required (non-optional) fields —
+// Same rule as imagePathSchema, but for required (non-optional) fields
 // used as the item type inside arrays of image URLs.
 export const imagePathItemSchema = z
   .string()

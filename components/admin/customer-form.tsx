@@ -57,7 +57,7 @@ export function CustomerForm({
         </p>
         <div className="mt-3 max-h-64 space-y-2 overflow-y-auto rounded-md border border-[var(--color-border)] p-3">
           {allProperties.length === 0 ? (
-            <p className="text-sm text-[var(--color-ink-soft)]">No properties yet — add one first.</p>
+            <p className="text-sm text-[var(--color-ink-soft)]">No properties yet, add one first.</p>
           ) : (
             allProperties.map((p) => (
               <label key={p.id} className="flex items-center gap-2 text-sm">

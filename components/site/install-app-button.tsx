@@ -17,7 +17,7 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
 
   useEffect(() => {
     // Reading browser-only globals (matchMedia, navigator) has to happen
-    // after mount — they don't exist during server rendering, so this
+    // after mount they don't exist during server rendering, so this
     // can't be computed any other way without a hydration mismatch.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsStandalone(window.matchMedia("(display-mode: standalone)").matches);
@@ -35,7 +35,7 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
-  if (isStandalone) return null; // Already installed — nothing to do.
+  if (isStandalone) return null; // Already installed nothing to do.
 
   async function handleClick() {
     if (deferredPrompt) {
@@ -44,7 +44,7 @@ export function InstallAppButton({ className = "" }: { className?: string }) {
       return;
     }
     // No native prompt available (iOS Safari, or a browser that doesn't
-    // support it) — show manual steps instead.
+    // support it)  show manual steps instead.
     setShowInstructions(true);
   }
 

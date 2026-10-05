@@ -115,7 +115,7 @@ export function PropertyForm({
             onChange={(e) => setListingSource(e.target.value)}
           >
             <option value="esema_owned">Esema owns this property</option>
-            <option value="partner_verified">Third party — Esema is verifying/brokering it</option>
+            <option value="partner_verified">Third party, Esema is verifying/brokering it</option>
           </Select>
         </Field>
 

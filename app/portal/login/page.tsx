@@ -23,7 +23,7 @@ export default async function PortalLoginPage({
 
         {params.reset === "success" ? (
           <p className="mt-4 rounded-md border border-[var(--color-forest)] bg-[var(--color-sage)] p-3 text-sm text-[var(--color-navy)]">
-            Your password has been reset — sign in below.
+            Your password has been reset, sign in below.
           </p>
         ) : null}
 

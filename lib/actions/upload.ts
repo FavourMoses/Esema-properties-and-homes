@@ -5,7 +5,7 @@ import { uploadImage } from "@/lib/storage";
 import { isValidPermissionKey, type PermissionKey } from "@/lib/permissions";
 
 // Uploads happen from many different admin forms, so the permission this
-// checks depends on which folder the upload is going into — a "team" photo
+// checks depends on which folder the upload is going into a "team" photo
 // requires the "team" permission, a "branding" photo (logo/hero) requires
 // "settings", and so on.
 const FOLDER_PERMISSION: Record<string, PermissionKey> = {

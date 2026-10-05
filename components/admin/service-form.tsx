@@ -64,7 +64,7 @@ export function ServiceForm({
         </Field>
       </div>
 
-      <Field label="Short description" htmlFor="shortDescription" hint="Shown on cards — keep it to one or two sentences">
+      <Field label="Short description" htmlFor="shortDescription" hint="Shown on cards, keep it to one or two sentences">
         <TextArea id="shortDescription" name="shortDescription" rows={2} required defaultValue={initial?.shortDescription} />
       </Field>
 

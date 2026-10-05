@@ -29,7 +29,7 @@ export default async function PropertyUpdatesPage({
   return (
     <div className="max-w-2xl">
       <h1 className="font-display text-2xl font-bold text-[var(--color-navy)]">
-        Progress updates — {property.title}
+        Progress updates  {property.title}
       </h1>
       <p className="mt-1 text-sm text-[var(--color-ink-soft)]">
         Anything posted here with &ldquo;Show this to the customer&rdquo; checked appears in this buyer&apos;s portal immediately.

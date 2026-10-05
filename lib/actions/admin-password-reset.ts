@@ -26,7 +26,7 @@ export async function requestAdminPasswordReset(
   if (!allowed) {
     return {
       message: null,
-      error: "Too many requests — please try again later.",
+      error: "Too many requests please try again later.",
     };
   }
 
@@ -44,7 +44,7 @@ export async function requestAdminPasswordReset(
     .where(eq(schema.adminUsers.email, email))
     .limit(1);
 
-  // Same response whether or not the account exists — never reveal which
+  // Same response whether or not the account exists never reveal which
   // emails are registered.
   if (user && user.isActive) {
     const { raw, hash } = generateResetToken();
@@ -65,7 +65,7 @@ export async function requestAdminPasswordReset(
         audience: "admin",
       });
     } catch {
-      // Don't leak email-delivery failures to the requester — same
+      // Don't leak email-delivery failures to the requester same
       // generic response either way.
     }
   }

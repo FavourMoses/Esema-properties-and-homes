@@ -17,15 +17,21 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [settings, trustFeatures, featuredProperties, activeServices, steps, testimonials] =
-    await Promise.all([
-      getSiteSettings(),
-      getTrustFeatures(),
-      getFeaturedProperties(),
-      getActiveServices(),
-      getVerificationSteps(),
-      getActiveTestimonials(),
-    ]);
+  const [
+    settings,
+    trustFeatures,
+    featuredProperties,
+    activeServices,
+    steps,
+    testimonials,
+  ] = await Promise.all([
+    getSiteSettings(),
+    getTrustFeatures(),
+    getFeaturedProperties(),
+    getActiveServices(),
+    getVerificationSteps(),
+    getActiveTestimonials(),
+  ]);
 
   return (
     <>
@@ -44,10 +50,17 @@ export default async function HomePage() {
               </p>
             ) : null}
             <div className="mt-8 flex flex-wrap gap-4">
-              <LinkButton href={settings.heroCtaPrimaryHref || "/properties"} variant="primary">
-                {settings.heroCtaPrimaryLabel || "Explore Properties"} <ArrowRight className="h-4 w-4" />
+              <LinkButton
+                href={settings.heroCtaPrimaryHref || "/properties"}
+                variant="primary"
+              >
+                {settings.heroCtaPrimaryLabel || "Explore Properties"}{" "}
+                <ArrowRight className="h-4 w-4" />
               </LinkButton>
-              <LinkButton href={settings.heroCtaSecondaryHref || "/services"} variant="secondary">
+              <LinkButton
+                href={settings.heroCtaSecondaryHref || "/services"}
+                variant="secondary"
+              >
                 {settings.heroCtaSecondaryLabel || "How Verification Works"}
               </LinkButton>
             </div>
@@ -85,7 +98,9 @@ export default async function HomePage() {
                   <h3 className="font-display text-sm font-semibold text-[var(--color-navy)]">
                     {feature.title}
                   </h3>
-                  <p className="mt-1 text-sm text-[var(--color-ink-soft)]">{feature.description}</p>
+                  <p className="mt-1 text-sm text-[var(--color-ink-soft)]">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -99,9 +114,12 @@ export default async function HomePage() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
               title="Featured Properties"
-              subtitle="A selection of verified, ready-to-view properties — owned by Esema and by trusted partners we've personally verified."
+              subtitle="A selection of verified, ready to view properties, owned by Esema and by trusted partners we've personally verified."
             />
-            <Link href="/properties" className="text-sm font-semibold text-[var(--color-forest)] hover:underline">
+            <Link
+              href="/properties"
+              className="text-sm font-semibold text-[var(--color-forest)] hover:underline"
+            >
               View all properties →
             </Link>
           </div>
@@ -114,7 +132,8 @@ export default async function HomePage() {
             </div>
           ) : (
             <p className="mt-10 rounded-lg border border-dashed border-[var(--color-border)] p-8 text-center text-sm text-[var(--color-ink-soft)]">
-              No featured properties yet — mark a property as &ldquo;Featured&rdquo; in the admin dashboard to show it here.
+              No featured properties yet, mark a property as
+              &ldquo;Featured&rdquo; in the admin dashboard to show it here.
             </p>
           )}
         </Container>
@@ -126,8 +145,7 @@ export default async function HomePage() {
           <Container>
             <SectionHeading title="How we protect every buyer" />
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/70">
-              Buying a property from a distance is risky. We remove that risk — whether the property
-              is ours or a verified partner&apos;s, anywhere in Nigeria.
+              We eliminate potential risks.
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -137,11 +155,19 @@ export default async function HomePage() {
                   href={`/services/${service.slug}`}
                   className="group rounded-lg border border-white/15 p-6 transition-colors hover:border-[var(--color-forest)] hover:bg-white/5"
                 >
-                  <Icon name={service.icon} className="h-7 w-7 text-[var(--color-forest)]" />
-                  <h3 className="mt-4 font-display text-base font-semibold">{service.title}</h3>
-                  <p className="mt-2 text-sm text-white/70">{service.shortDescription}</p>
+                  <Icon
+                    name={service.icon}
+                    className="h-7 w-7 text-[var(--color-forest)]"
+                  />
+                  <h3 className="mt-4 font-display text-base font-semibold">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-white/70">
+                    {service.shortDescription}
+                  </p>
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-forest)]">
-                    Learn more <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    Learn more{" "}
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </Link>
               ))}
@@ -160,14 +186,19 @@ export default async function HomePage() {
             />
             <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => (
-                <li key={step.id} className="relative border-t-2 border-[var(--color-forest)] pt-4">
+                <li
+                  key={step.id}
+                  className="relative border-t-2 border-[var(--color-forest)] pt-4"
+                >
                   <span className="font-display text-3xl font-bold text-[var(--color-forest)]">
                     {String(step.stepNumber).padStart(2, "0")}
                   </span>
                   <h3 className="mt-2 font-display text-base font-semibold text-[var(--color-navy)]">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-[var(--color-ink-soft)]">{step.description}</p>
+                  <p className="mt-2 text-sm text-[var(--color-ink-soft)]">
+                    {step.description}
+                  </p>
                 </li>
               ))}
             </ol>
@@ -190,7 +221,9 @@ export default async function HomePage() {
                   <figcaption className="mt-4 text-sm font-semibold text-[var(--color-navy)]">
                     {t.clientName}
                     {t.clientRole ? (
-                      <span className="block font-normal text-[var(--color-ink-soft)]">{t.clientRole}</span>
+                      <span className="block font-normal text-[var(--color-ink-soft)]">
+                        {t.clientRole}
+                      </span>
                     ) : null}
                   </figcaption>
                 </figure>
@@ -207,7 +240,8 @@ export default async function HomePage() {
             Ready to find your next property?
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-sm text-[var(--color-ink-soft)]">
-            Tell us what you&apos;re looking for and where — we&apos;ll verify it before you pay a naira.
+            Tell us what you&apos;re looking for and where, we&apos;ll verify it
+            before you pay.
           </p>
           <div className="mt-7">
             <LinkButton href="/contact" variant="primary">

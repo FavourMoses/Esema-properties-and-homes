@@ -119,7 +119,7 @@ CREATE TABLE "site_settings" (
 	"tagline" varchar(200) DEFAULT 'Building Dreams. Creating Value.' NOT NULL,
 	"logo_url" text,
 	"hero_title" text DEFAULT 'Esema Properties & Homes' NOT NULL,
-	"hero_subtitle" text DEFAULT 'We deliver quality, affordable, and verified properties across Nigeria — and stand beside you at every step, from land verification to handover.' NOT NULL,
+	"hero_subtitle" text DEFAULT 'We deliver quality, affordable, and verified properties across Nigeria and stand beside you at every step, from land verification to handover.' NOT NULL,
 	"hero_image_url" text,
 	"hero_cta_primary_label" varchar(60) DEFAULT 'Explore Properties',
 	"hero_cta_primary_href" varchar(200) DEFAULT '/properties',

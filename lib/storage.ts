@@ -17,7 +17,7 @@ const MAX_FILE_BYTES = 8 * 1024 * 1024; // 8MB per image
 
 /**
  * Service-role Supabase client. This key bypasses Row Level Security, so it
- * must NEVER be imported into client components — `server-only` above
+ * must NEVER be imported into client components `server-only` above
  * throws a build error if anything tries to bundle this into client JS.
  */
 function getAdminClient() {

@@ -62,7 +62,7 @@ export function SiteSettingsForm({ settings }: { settings: Settings }) {
         <div className="mt-4">
           <ImageUploadField
             name="logoUrl"
-            label="Logo (optional — replaces the default mark)"
+            label="Logo (optional, replaces the default mark)"
             folder="branding"
             defaultValue={settings.logoUrl}
           />

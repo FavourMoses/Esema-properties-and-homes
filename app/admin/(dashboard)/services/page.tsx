@@ -52,7 +52,7 @@ export default async function AdminServicesPage() {
         ))}
         {services.length === 0 ? (
           <p className="col-span-2 rounded-lg border border-dashed border-[var(--color-border)] p-8 text-center text-sm text-[var(--color-ink-soft)]">
-            No services yet — add Land Verification, Site Inspection, Construction Monitoring, and Vetted Builders Network to get started.
+            No services yet, add Land Verification, Site Inspection, Construction Monitoring, and Vetted Builders Network to get started.
           </p>
         ) : null}
       </div>

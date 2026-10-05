@@ -2,7 +2,7 @@ import { db, schema } from "@/lib/db";
 import { and, asc, count, desc, eq } from "drizzle-orm";
 
 /**
- * Every function here reads from the database — nothing on the public site
+ * Every function here reads from the database nothing on the public site
  * is hardcoded. If a table is empty (e.g. right after first deploy, before
  * the client has added content), pages fall back to a minimal safe default
  * so the site never shows a broken empty page.
@@ -18,7 +18,7 @@ export async function getSiteSettings() {
       logoUrl: null,
       heroTitle: "Esema Properties & Homes",
       heroSubtitle:
-        "We deliver quality, affordable, and verified properties across Nigeria — and stand beside you at every step, from land verification to handover.",
+        "We deliver quality, affordable, and verified properties across Nigeria and stand beside you at every step, from land verification to handover.",
       heroImageUrl: null,
       heroCtaPrimaryLabel: "Explore Properties",
       heroCtaPrimaryHref: "/properties",

@@ -3,7 +3,7 @@
  * add a new admin section, and it automatically shows up as a checkbox on
  * the "Add sub-admin" form and gets enforced by middleware.
  *
- * "owner" accounts always have full access and are not affected by this —
+ * "owner" accounts always have full access and are not affected by this,
  * only "staff" accounts are restricted to the permissions listed here.
  * Managing other admin accounts is deliberately NOT a togglable permission:
  * only "owner" accounts can create/edit/remove admin users, to prevent a
@@ -55,7 +55,7 @@ export function hasPermission(
 /**
  * Maps an /admin/* URL to the permission section it belongs to. Returns
  * null for pages every logged-in admin can see (dashboard, their own
- * account) — used by middleware to decide what to guard.
+ * account) used by middleware to decide what to guard.
  */
 export function permissionForPath(pathname: string): PermissionKey | null {
   const map: [string, PermissionKey][] = [

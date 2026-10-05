@@ -12,7 +12,7 @@ import { RegisterServiceWorker } from "@/components/site/register-sw";
 export const metadata: Metadata = {
   title: "Esema Properties & Homes",
   description:
-    "Quality, verified, affordable properties across Nigeria — land verification, site inspection, construction monitoring, and a trusted network of builders.",
+    "Quality, verified, affordable properties across Nigeria, land verification, site inspection, construction monitoring, and a trusted network of builders.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],

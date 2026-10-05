@@ -25,7 +25,7 @@ export async function loginAction(
     if (err instanceof AuthError) {
       return { error: "Incorrect email or password, or the account is temporarily locked." };
     }
-    // NextAuth throws a special redirect "error" on success — rethrow it
+    // NextAuth throws a special redirect "error" on success, rethrow it
     // so Next.js can actually perform the redirect.
     throw err;
   }

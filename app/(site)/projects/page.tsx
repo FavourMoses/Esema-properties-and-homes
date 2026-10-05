@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
       <Container>
         <SectionHeading
           title="Projects"
-          subtitle="Construction we're building or monitoring directly — with visible progress, not vague promises."
+          subtitle="Construction we're building or monitoring directly with visible progress, not vague promises."
         />
 
         {projects.length > 0 ? (

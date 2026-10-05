@@ -4,7 +4,7 @@ A real estate + property-verification website for Esema Properties & Homes:
 a public site for browsing and inquiring about properties (owned by Esema,
 or third-party properties Esema verifies and brokers anywhere in Nigeria),
 and a password-protected admin dashboard where every word, image, property,
-service, and bank account on the site can be edited — nothing is hardcoded.
+service, and bank account on the site can be edited nothing is hardcoded.
 
 ## What's inside
 
@@ -14,7 +14,7 @@ service, and bank account on the site can be edited — nothing is hardcoded.
 - **Admin dashboard** (`/admin`): Properties, Services, Projects,
   Testimonials, Team, Bank Accounts, Leads inbox, and Site Settings
   (hero text, logo, about page, contact details, social links).
-- **No payment gateway** — bank account details are simply displayed on a
+- **No payment gateway**  bank account details are simply displayed on a
   verified property's page, with a warning telling buyers to confirm by
   phone/WhatsApp before paying anything.
 
@@ -24,11 +24,11 @@ service, and bank account on the site can be edited — nothing is hardcoded.
 |---|---|---|
 | Framework | Next.js 16 (App Router) | One codebase for the public site and the admin dashboard |
 | Database | PostgreSQL via **Supabase** | Generous free tier, includes file storage too |
-| ORM | **Drizzle** (not Prisma) | No native binary download step — simpler and more reliable to deploy on Vercel's serverless functions |
+| ORM | **Drizzle** (not Prisma) | No native binary download step simpler and more reliable to deploy on Vercel's serverless functions |
 | Auth | **Auth.js (NextAuth) v5** | Credentials login for staff, JWT sessions, works natively with the App Router |
 | File storage | Supabase Storage | Property/project/testimonial photos, uploaded straight from the admin dashboard |
 | Styling | Tailwind CSS v4 | Fast to theme, no separate CSS build step |
-| Fonts | Self-hosted via `@fontsource` (Sora + Inter) | No runtime request to Google Fonts — faster, more private, and never breaks if that request fails |
+| Fonts | Self-hosted via `@fontsource` (Sora + Inter) | No runtime request to Google Fonts faster, more private, and never breaks if that request fails |
 
 ## 1. Local setup
 
@@ -49,14 +49,14 @@ npm run dev
 1. Push this project to a GitHub repository (private is fine).
 2. Go to [vercel.com](https://vercel.com) → **New Project** → import the repo.
 3. Add every variable from `.env.local` to Vercel's **Environment
-   Variables** settings — except set `NEXTAUTH_URL` to your real domain
+   Variables** settings, except set `NEXTAUTH_URL` to your real domain
    once you have one (e.g. `https://esemaproperties.com`).
 4. Deploy. Vercel builds the site directly from your database, so make
    sure steps 2–3 above are done first.
 5. Add a custom domain under **Project Settings → Domains** whenever you're
    ready.
 
-Every edit made in `/admin` after that takes effect immediately — pages are
+Every edit made in `/admin` after that takes effect immediately, pages are
 rendered fresh on every request rather than cached, so there's never a
 "why isn't my change showing up" delay.
 

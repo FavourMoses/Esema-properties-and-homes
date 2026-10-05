@@ -68,7 +68,7 @@ export const leadStatusEnum = pgEnum("lead_status", [
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  ADMIN USERS  — the only people who can log into /admin
+ *  ADMIN USERS the only people who can log into /admin
  * ─────────────────────────────────────────────────────────────────────────
  */
 export const adminUsers = pgTable("admin_users", {
@@ -77,7 +77,7 @@ export const adminUsers = pgTable("admin_users", {
   passwordHash: text("password_hash").notNull(),
   name: varchar("name", { length: 255 }).notNull(),
   role: adminRoleEnum("role").notNull().default("staff"),
-  // Which admin sections a "staff" user can access — ignored for "owner",
+  // Which admin sections a "staff" user can access ignored for "owner",
   // who always has full access. See lib/permissions.ts for the valid keys.
   permissions: jsonb("permissions").$type<string[]>().notNull().default([]),
   isActive: boolean("is_active").notNull().default(true),
@@ -93,7 +93,7 @@ export const adminUsers = pgTable("admin_users", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  PASSWORD RESETS — one table per account type, each with its own FK, so
+ *  PASSWORD RESETS one table per account type, each with its own FK, so
  *  a reset token for a staff account can never be replayed against a
  *  customer account or vice versa. Tokens are stored as a hash, never in
  *  plain text, and are single-use (usedAt) and time-limited (expiresAt).
@@ -114,7 +114,7 @@ export const adminPasswordResets = pgTable("admin_password_resets", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  SITE SETTINGS — single row. Every word of the public homepage/contact
+ *  SITE SETTINGS single row. Every word of the public homepage/contact
  *  block that isn't a listing or service comes from here, so the client can
  *  rewrite the site without touching code.
  * ─────────────────────────────────────────────────────────────────────────
@@ -134,7 +134,7 @@ export const siteSettings = pgTable("site_settings", {
   heroSubtitle: text("hero_subtitle")
     .notNull()
     .default(
-      "We deliver quality, affordable, and verified properties across Nigeria — and stand beside you at every step, from land verification to handover.",
+      "We deliver quality, affordable, and verified properties across Nigeria and stand beside you at every step, from land verification to handover.",
     ),
   heroImageUrl: text("hero_image_url"),
   heroCtaPrimaryLabel: varchar("hero_cta_primary_label", {
@@ -177,7 +177,7 @@ export const siteSettings = pgTable("site_settings", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  BANK ACCOUNTS — displayed to a buyer once they're ready to pay.
+ *  BANK ACCOUNTS displayed to a buyer once they're ready to pay.
  *  No payment gateway: this is intentionally just editable text.
  * ─────────────────────────────────────────────────────────────────────────
  */
@@ -194,7 +194,7 @@ export const bankAccounts = pgTable("bank_accounts", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  TRUST FEATURES — the small "Quality Homes / Trusted & Reliable / ..."
+ *  TRUST FEATURES the small "Quality Homes / Trusted & Reliable / ..."
  *  badge row under the hero.
  * ─────────────────────────────────────────────────────────────────────────
  */
@@ -209,7 +209,7 @@ export const trustFeatures = pgTable("trust_features", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  SERVICES — Land Verification, Site Inspection Reports, Construction
+ *  SERVICES  Land Verification, Site Inspection Reports, Construction
  *  Monitoring, Vetted Builders Network, and anything the client adds later.
  * ─────────────────────────────────────────────────────────────────────────
  */
@@ -227,7 +227,7 @@ export const services = pgTable("services", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  VERIFICATION STEPS — the numbered "how buying through us works" process.
+ *  VERIFICATION STEPS  the numbered "how buying through us works" process.
  * ─────────────────────────────────────────────────────────────────────────
  */
 export const verificationSteps = pgTable("verification_steps", {
@@ -273,7 +273,7 @@ export const properties = pgTable("properties", {
   coverImageUrl: text("cover_image_url"),
   isFeatured: boolean("is_featured").notNull().default(false),
 
-  // Internal-only — never rendered on the public site. Used when the
+  // Internal-only never rendered on the public site. Used when the
   // property belongs to a third party and Esema is verifying/brokering it.
   ownerContactName: varchar("owner_contact_name", { length: 160 }),
   ownerContactPhone: varchar("owner_contact_phone", { length: 40 }),
@@ -298,9 +298,9 @@ export const propertyImages = pgTable("property_images", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  CUSTOMER USERS — property buyers who can sign in to /portal to see
+ *  CUSTOMER USERS  property buyers who can sign in to /portal to see
  *  progress on the property they bought. Completely separate login system
- *  from admin_users — never mixed with staff access.
+ *  from admin_users  never mixed with staff access.
  * ─────────────────────────────────────────────────────────────────────────
  */
 export const customerUsers = pgTable("customer_users", {
@@ -333,7 +333,7 @@ export const customerPasswordResets = pgTable("customer_password_resets", {
 
 /**
  * Which customer(s) can see which propert(ies). A property can have more
- * than one linked buyer (e.g. a couple), and — in principle — a customer
+ * than one linked buyer (e.g. a couple), and  in principle a customer
  * could be linked to more than one property.
  */
 export const propertyCustomers = pgTable("property_customers", {
@@ -347,7 +347,7 @@ export const propertyCustomers = pgTable("property_customers", {
 }).enableRLS();
 
 /**
- * The progress feed a customer sees for their property — land verification
+ * The progress feed a customer sees for their property land verification
  * notes, inspection reports, construction updates, all in one timeline.
  * isVisibleToCustomer is the admin's on/off switch for each entry.
  */
@@ -369,7 +369,7 @@ export const propertyUpdates = pgTable("property_updates", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  PROJECTS — ongoing construction / development projects
+ *  PROJECTS ongoing construction / development projects
  * ─────────────────────────────────────────────────────────────────────────
  */
 export const projects = pgTable("projects", {
@@ -425,7 +425,7 @@ export const teamMembers = pgTable("team_members", {
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  LEADS — every contact form / property inquiry / consultation request
+ *  LEADS every contact form / property inquiry / consultation request
  * ─────────────────────────────────────────────────────────────────────────
  */
 export const leads = pgTable("leads", {

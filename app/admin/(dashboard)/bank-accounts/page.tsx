@@ -25,7 +25,7 @@ export default async function AdminBankAccountsPage() {
       <div className="mt-4 flex gap-2 rounded-md border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/5 p-3 text-xs text-[var(--color-ink-soft)]">
         <AlertTriangle className="h-4 w-4 shrink-0 text-[var(--color-gold)]" />
         These account details are shown directly on verified property pages. There is no payment
-        gateway — buyers pay by bank transfer and are told to confirm with your team first.
+        gateway buyers pay by bank transfer and are told to confirm with your team first.
       </div>
 
       <div className="mt-6 space-y-3">
@@ -33,7 +33,7 @@ export default async function AdminBankAccountsPage() {
           <div key={acc.id} className="flex items-center justify-between rounded-lg border border-[var(--color-border)] bg-white p-4">
             <div>
               <p className="font-semibold text-[var(--color-navy)]">{acc.bankName} ({acc.currency})</p>
-              <p className="text-sm text-[var(--color-ink-soft)]">{acc.accountName} — {acc.accountNumber}</p>
+              <p className="text-sm text-[var(--color-ink-soft)]">{acc.accountName}  {acc.accountNumber}</p>
               <p className="text-xs text-[var(--color-ink-soft)]">{acc.isActive ? "Visible" : "Hidden"}</p>
             </div>
             <div className="flex gap-4">

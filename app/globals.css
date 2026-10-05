@@ -2,17 +2,17 @@
 
 :root {
   /* ── Brand palette ────────────────────────────────────────────────── */
-  --color-ink: #1c1f1d;         /* primary text */
-  --color-ink-soft: #4b5049;    /* secondary text */
-  --color-paper: #faf8f3;       /* page background */
-  --color-paper-tint: #f1efe6;  /* recessed section background */
-  --color-sage: #eef3e7;        /* soft green tint for cards/badges */
-  --color-forest: #4f7a26;      /* primary green — CTAs, links */
+  --color-ink: #1c1f1d; /* primary text */
+  --color-ink-soft: #4b5049; /* secondary text */
+  --color-paper: #faf8f3; /* page background */
+  --color-paper-tint: #f1efe6; /* recessed section background */
+  --color-sage: #eef3e7; /* soft green tint for cards/badges */
+  --color-forest: #4f7a26; /* primary green  CTAs, links */
   --color-forest-deep: #3c5c1c; /* hover state for green */
-  --color-navy: #142e54;        /* headings, admin chrome, trust */
+  --color-navy: #142e54; /* headings, admin chrome, trust */
   --color-navy-deep: #0d1f3b;
-  --color-gold: #b9832c;        /* verification / trust accent, used sparingly */
-  --color-border: #e3ded0;      /* hairline borders on cream */
+  --color-gold: #b9832c; /* verification / trust accent, used sparingly */
+  --color-border: #e3ded0; /* hairline borders on cream */
   --color-danger: #b3432f;
 }
 
@@ -44,18 +44,27 @@ body {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family:
+    var(--font-display),
+    font-serif italic;
+  /* font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; */
 }
 
-/* Visible keyboard focus everywhere — accessibility floor, not optional. */
+/* Visible keyboard focus everywhere accessibility floor, not optional. */
 :focus-visible {
   outline: 2px solid var(--color-forest);
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

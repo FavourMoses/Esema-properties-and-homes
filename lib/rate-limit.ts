@@ -6,7 +6,7 @@ import { headers } from "next/headers";
  * so two caveats worth knowing: it resets whenever the server restarts or
  * redeploys, and on serverless hosting (Vercel) it isn't shared across every
  * instance handling traffic. That means a genuinely distributed attacker
- * could still get more requests through than the limit suggests — but it
+ * could still get more requests through than the limit suggests but it
  * stops the common case (one person or script hammering the form) cold,
  * which is what actually happens to small sites in practice. If this ever
  * needs to be airtight, the upgrade path is a shared store like Upstash

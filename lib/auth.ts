@@ -55,7 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-        // Successful login — reset the failure counter.
+        // Successful login reset the failure counter.
         await db
           .update(adminUsers)
           .set({ failedLoginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })

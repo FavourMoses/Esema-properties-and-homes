@@ -24,7 +24,7 @@ export default async function PropertiesPage({
       <Container>
         <SectionHeading
           title="Properties"
-          subtitle="Every listing here — whether owned by Esema or by a partner — has been through our verification process."
+          subtitle="Every listing here whether owned by Esema or by a partner, has been through our verification process."
         />
 
         <form className="mt-8 flex flex-wrap gap-3 rounded-lg border border-[var(--color-border)] bg-white p-4" method="get">
@@ -63,7 +63,7 @@ export default async function PropertiesPage({
           </div>
         ) : (
           <p className="mt-10 rounded-lg border border-dashed border-[var(--color-border)] p-10 text-center text-sm text-[var(--color-ink-soft)]">
-            No properties match that search yet. Try clearing the filters, or check back soon —
+            No properties match that search yet. Try clearing the filters, or check back soon,
             new verified listings are added regularly.
           </p>
         )}

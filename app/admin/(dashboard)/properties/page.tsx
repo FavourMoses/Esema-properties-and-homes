@@ -75,7 +75,7 @@ export default async function AdminPropertiesPage() {
             {properties.length === 0 ? (
               <tr>
                 <td colSpan={7} className="px-4 py-8 text-center text-[var(--color-ink-soft)]">
-                  No properties yet — add your first one.
+                  No properties yet, add your first one.
                 </td>
               </tr>
             ) : null}

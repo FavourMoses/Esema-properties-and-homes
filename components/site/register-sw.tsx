@@ -6,7 +6,7 @@ export function RegisterServiceWorker() {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js").catch(() => {
-        // Installability is a nice-to-have, not critical — fail silently.
+        // Installability is a nice-to-have, not critical, fail silently.
       });
     }
   }, []);

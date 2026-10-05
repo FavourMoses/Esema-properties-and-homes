@@ -72,7 +72,7 @@ export async function createProperty(
     }
   } catch (err) {
     if (err instanceof Error && err.message.includes("unique")) {
-      return { error: "A property with this URL slug already exists — please change it." };
+      return { error: "A property with this URL slug already exists please change it." };
     }
     return { error: "Something went wrong saving this property." };
   }
@@ -127,7 +127,7 @@ export async function updateProperty(
       })
       .where(eq(schema.properties.id, id));
 
-    // Replace the gallery wholesale — simplest correct approach for a
+    // Replace the gallery wholesale simplest correct approach for a
     // small admin tool like this.
     await db.delete(schema.propertyImages).where(eq(schema.propertyImages.propertyId, id));
     if (gallery.length > 0) {
@@ -137,7 +137,7 @@ export async function updateProperty(
     }
   } catch (err) {
     if (err instanceof Error && err.message.includes("unique")) {
-      return { error: "A property with this URL slug already exists — please change it." };
+      return { error: "A property with this URL slug already exists, please change it." };
     }
     return { error: "Something went wrong saving this property." };
   }

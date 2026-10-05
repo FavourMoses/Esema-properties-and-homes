@@ -17,7 +17,7 @@ export async function submitLead(
   if (!allowed) {
     return {
       ok: false,
-      message: "Too many submissions — please try again in a few minutes.",
+      message: "Too many submissions please try again in a few minutes.",
     };
   }
 
@@ -58,6 +58,6 @@ export async function submitLead(
 
   return {
     ok: true,
-    message: "Thanks — we've received your message and will be in touch soon.",
+    message: "Thanks we've received your message and will be in touch soon.",
   };
 }

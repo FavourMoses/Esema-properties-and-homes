@@ -56,7 +56,7 @@ export default async function PortalDashboardPage() {
 
                 {updates.length === 0 ? (
                   <p className="mt-3 text-sm text-[var(--color-ink-soft)]">
-                    No updates have been posted yet — check back soon.
+                    No updates have been posted yet, check back soon.
                   </p>
                 ) : (
                   <ol className="mt-4 space-y-6">

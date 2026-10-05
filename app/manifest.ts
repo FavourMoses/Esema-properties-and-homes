@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Esema Properties & Homes",
     short_name: "Esema",
     description:
-      "Browse verified properties across Nigeria, track progress on your purchase, or manage listings — all in one app.",
+      "Browse verified properties across Nigeria, track progress on your purchase, or manage listings all in one app.",
     start_url: "/",
     scope: "/",
     display: "standalone",

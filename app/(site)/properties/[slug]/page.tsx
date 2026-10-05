@@ -116,7 +116,7 @@ export default async function PropertyDetailPage({
                       {acc.bankName} ({acc.currency})
                     </dt>
                     <dd className="text-[var(--color-ink-soft)]">
-                      {acc.accountName} — {acc.accountNumber}
+                      {acc.accountName}  {acc.accountNumber}
                     </dd>
                     {acc.note ? <dd className="text-xs text-[var(--color-ink-soft)]">{acc.note}</dd> : null}
                   </div>
